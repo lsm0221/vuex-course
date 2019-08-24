@@ -1,38 +1,41 @@
 <template>
   <div id="app">
+    <!-- getters -->
     <p>App.vue:{{count}}</p>
-    <p>App.vue:{{todos}}</p>
+    <p>{{completedTodos}}</p>
+    <p>{{completedTodosCount}}</p>
+    <p>{{getTodosById(1)}}</p>
+    <!-- <p>App.vue:{{todos}}</p> -->
 
-    <Count />
+    <!-- <Count /> -->
   </div>
 </template>
 
 <script>
 import Count from "./components/Count";
-import { mapState } from "vuex";
+import { mapState, mapGetters } from "vuex";
 
 export default {
   name: "app",
   components: { Count },
-  //写法3
-  computed: mapState(["count", "todos"])
-
-  //写法2
-  // computed: mapState({
-  //   count: state => state.count,
-  //   // count:function(state){
-  //   //   return state.count
-  //   // },
-  //   todos: state => state.todos
-  // })
-
-  // 写法1
+  computed: mapGetters([
+    "count",
+    "completedTodos",
+    "completedTodosCount",
+    "getTodosById"
+  ])
   // computed: {
   //   count() {
-  //     return this.$store.state.count;
+  //     return this.$store.getters.count;
   //   },
-  //   todos() {
-  //     return this.$store.state.todos;
+  //   completedTodos() {
+  //     return this.$store.getters.completedTodos;
+  //   },
+  //   completedTodosCount() {
+  //     return this.$store.getters.completedTodosCount;
+  //   },
+  //   getTodosById() {
+  //     return this.$store.getters.getTodosById;
   //   }
   // }
 };
